@@ -5,18 +5,20 @@ $loggedIn = isset($_SESSION['user']);
 
 require_once __DIR__ . "/../controllers/ClientController.php";
 require_once __DIR__ . "/../controllers/UserController.php";
+require_once __DIR__ . "/../controllers/DeviceController.php";
 
 $controller = new ClientController();
 $user = new UserController();
 
 if(!isset($_SESSION['user'])) {
-    $action = "login";
+    $action = $_GET['action'] ?? 'login';
     switch ($action) {
         case 'login':
             $user->login();
             break;
         default:
             # code...
+            echo "Web page not found";
             break;
     }
 } else {
@@ -42,6 +44,9 @@ if(!isset($_SESSION['user'])) {
             break;
         case 'search':
             $controller->search();
+            break;
+        case 'createUser':
+            $user->createUser();
             break;
         case 'logout':
             $user->logout();

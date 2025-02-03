@@ -22,9 +22,10 @@
             }
         }
     </style>
-    <form action="index.php?action=login" method="post" class="border p-4 d-flex justify-content-center align-items-center flex-column">
+    <?php include("includes/header.php"); ?>
+    <form action="index.php?action=createUser" method="post" class="border p-4 d-flex justify-content-center align-items-center flex-column">
         <img src="../public/img/Logo.jpg" class="img-fluid" alt="">
-        <legend class="text-center">Welcome</legend>
+        <legend class="text-center">Create new Admin</legend>
         <div class="input-group mb-3">
             <span class="input-group-text">User: </span>
             <input type="text" name="user" id="user" class="form-control">

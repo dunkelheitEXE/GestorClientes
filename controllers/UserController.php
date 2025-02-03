@@ -9,21 +9,23 @@ class UserController {
     } 
 
     public function createUser() {
-        $name = "Admin1";
-        $password = "123";
         if($_SERVER['REQUEST_METHOD'] === "POST") {
+            $name = $_POST['user'];
+            $password = $_POST['password'];
             if($this->model->signup($name, $password)) {
                 echo "<h1>Usuario creado</h1>";
             } else {
-                echo "ALGO SALIO MAL";
+                echo "<h1>ALGO SALIO MAL</h1>";
             }
         }
-        require __DIR__ . "/../public/views/Admins/login.php";
+        require __DIR__ . "/../public/views/Admins/Signup.php";
     }
 
     public function login() {
         if($_SERVER['REQUEST_METHOD'] === "POST") {
-            $results = $this->model->login($_POST['user'], $_POST['password']);
+            $user = $_POST['user'];
+            $password = $_POST['password'];
+            $results = $this->model->login($user, $password);
             $_SESSION['user'] = $results['id'];
             header("Location: /GestorClientes/public/index.php?action=index");
         }

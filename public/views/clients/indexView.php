@@ -14,7 +14,10 @@
         <div class="mb-3">
             <input type="text" name="search" id="search" class="form-control" autocomplete="off" style="width: 50%;">
         </div>
-        <button class="btn btn-primary" onclick="searchClients()">Search</button>
+        <div class="d-flex">
+            <button class="btn btn-primary mx-2" onclick="searchClients()">Search</button>
+            <a href="index.php?action=create" class="btn btn-success mx-2">Create new client</a>
+        </div>
     </div>
 
     <table id="searchBox" class="table table-striped" style="width: 90%; margin: 15px auto;">

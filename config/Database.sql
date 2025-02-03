@@ -1,4 +1,4 @@
--- Active: 1733938264051@@127.0.0.1@3306@gestor
+-- Active: 1735938407529@@127.0.0.1@3306@gestor
 CREATE DATABASE gestor;
 USE gestor;
 
@@ -20,8 +20,10 @@ CREATE TABLE device (
     serial_number VARCHAR(255),
     purchase_date DATETIME,
     PRIMARY KEY(device_id),
-    FOREIGN KEY (client_id) REFERENCES client(client_id)
+    FOREIGN KEY (client_id) REFERENCES client(client_id) ON UPDATE CASCADE ON DELETE CASCADE
 );
+
+ALTER TABLE device MODIFY purchase_date DATE;
 
 CREATE TABLE technician (
     technician_id INT NOT NULL AUTO_INCREMENT,
@@ -42,8 +44,8 @@ CREATE TABLE maintenancefile (
     diagnostic VARCHAR(255),
     state VARCHAR(255),
     PRIMARY KEY(file_id),
-    FOREIGN KEY(device_id) REFERENCES device(device_id),
-    FOREIGN KEY(technician_id) REFERENCES technician(technician_id) 
+    FOREIGN KEY(device_id) REFERENCES device(device_id) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY(technician_id) REFERENCES technician(technician_id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 ALTER TABLE maintenancefile MODIFY start_date DATETIME NOT NULL;
@@ -65,8 +67,8 @@ CREATE TABLE sparepartused (
     sparepart BIGINT NOT NULL,
     amount BIGINT NOT NULL,
     PRIMARY KEY(id),
-    FOREIGN KEY(file_id) REFERENCES maintenancefile(file_id),
-    FOREIGN KEY(sparepart) REFERENCES sparepart(id)
+    FOREIGN KEY(file_id) REFERENCES maintenancefile(file_id) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY(sparepart) REFERENCES sparepart(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE services (
@@ -83,7 +85,7 @@ CREATE TABLE invoices (
     realse DATETIME NOT NULL,
     total DOUBLE NOT NULL,
     PRIMARY KEY(invoice_id),
-    FOREIGN KEY(file_id) REFERENCES maintenancefile(file_id)
+    FOREIGN KEY(file_id) REFERENCES maintenancefile(file_id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 
@@ -94,7 +96,7 @@ CREATE TABLE payment (
     amount DOUBLE NOT NULL,
     payment_method VARCHAR(255),
     PRIMARY KEY(payment_id),
-    FOREIGN KEY(file_id) REFERENCES maintenancefile(file_id)
+    FOREIGN KEY(file_id) REFERENCES maintenancefile(file_id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE servicedone (
@@ -102,8 +104,8 @@ CREATE TABLE servicedone (
     file_id BIGINT NOT NULL,
     service_id BIGINT NOT NULL,
     PRIMARY KEY(id),
-    FOREIGN KEY(file_id) REFERENCES maintenancefile(file_id),
-    FOREIGN KEY(service_id) REFERENCES services(service_id)
+    FOREIGN KEY(file_id) REFERENCES maintenancefile(file_id) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY(service_id) REFERENCES services(service_id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 --
@@ -118,3 +120,5 @@ CREATE TABLE user(
 );
 
 ALTER TABLE `user` MODIFY name VARCHAR(255) NOT NULL UNIQUE;
+
+SELECT COUNT(`type`) AS amount, `type` FROM device GROUP BY `type`;

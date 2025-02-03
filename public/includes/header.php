@@ -1,7 +1,7 @@
     <header>
         <nav class="navbar bg-dark fixed-top" data-bs-theme="dark">
             <div class="container-fluid">
-                <a href="#" class="navbar-brand">Gestor</a>
+                <a href="#" class="navbar-brand"><img src="img/logoDark.png" class="img-fluid" alt="" style="width: 180px;"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -18,18 +18,15 @@
                                 </li>
                             <?php endif; ?>
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="index.php">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="index.php?action=create">Create Client</a>
+                                <a class="nav-link active" aria-current="page" href="index.php">Clients</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Dropdown
+                                    Devices
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li><a class="dropdown-item" href="Devices.php?action=index">Index</a></li>
+                                    <li><a class="dropdown-item" href="Devices.php?action=create">Create</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
