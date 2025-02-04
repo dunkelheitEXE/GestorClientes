@@ -26,6 +26,9 @@ if(!isset($_SESSION['user'])) {
         case 'edit':
             $controller->edit();
             break;
+        case 'delete':
+            $controller->delete();
+            break;
         default:
             # code...
             echo "Web page not fund";

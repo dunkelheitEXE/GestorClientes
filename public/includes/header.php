@@ -12,14 +12,14 @@
                     </div>
                     <div class="offcanvas-body">
                         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                            <?php if(isset($_SESSION['user'])): ?>
-                                <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="index.php?action=logout">Logout</a>
-                                </li>
-                            <?php endif; ?>
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="index.php">Clients</a>
                             </li>
+                            <?php if(isset($_SESSION['user'])): ?>
+                                <li class="nav-item">
+                                    <a class="btn btn-danger" aria-current="page" href="index.php?action=logout">Logout</a>
+                                </li>
+                            <?php endif; ?>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Devices

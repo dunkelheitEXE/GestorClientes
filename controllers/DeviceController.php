@@ -71,5 +71,14 @@ class DeviceController
             }
         }
     }
+
+    public function delete()
+    {
+        if($this->model->delete($_GET['id'])) {
+            header('Location: /GestorClientes/public/Devices.php?action=index');
+        } else {
+            echo "No";
+        }
+    }
 }
 ?>

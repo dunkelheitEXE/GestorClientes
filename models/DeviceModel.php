@@ -58,5 +58,13 @@ class DeviceModel
         $results = $stmt->get_result();
         return $results->fetch_assoc();
     }
+
+    public function delete($id)
+    {
+        $query = "DELETE FROM device WHERE device_id = ?";
+        $stmt = $this->connection->prepare($query);
+        $stmt->bind_param('i', $id);
+        return $stmt->execute();
+    }
 }
 ?>
